@@ -1,42 +1,128 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geschenk Finder</title>
-    <meta name="description" content="Finden Sie das perfekte Geschenk: Egal ob zum 30. Geburtstag, 50. Geburtstag für Frauen oder Männer – entdecken Sie personalisierte Geschenkideen!">
-    <meta name="keywords" content="geschenk 30 geburtstag mann, personalisierte geschenke, geschenk 50 geburtstag frau, geburtstag geschenk ideen für männer, geschenke zum 18 geburtstag, geschenke zum 40 geburtstag, geschenke zum 60 geburtstag mann, geschenke zum 70 geburtstag frau, geschenk 80 geburtstag, geschenk 90 geburtstag">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geschenk-Finder | Geschenkideen für jedes Alter</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    select, button {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.5rem 0 1rem 0;
+      font-size: 1rem;
+    }
+    button {
+      background: #1d4ed8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎁 Geschenk-Finder</h1>
-        <p>Finden Sie mit wenigen Klicks das passende Geschenk für jede Altersgruppe und jedes Geschlecht.</p>
-        <form id="giftForm">
-            <label for="gender">Geschlecht:</label>
-            <select id="gender" name="gender">
-                <option value="">Bitte wählen</option>
-                <option value="frauen">Frau</option>
-                <option value="männer">Mann</option>
-            </select>
-            <br><br>
-            <label for="age">Alter:</label>
-            <select id="age" name="age">
-                <option value="">Bitte wählen</option>
-                <option value="18">18</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="50">50</option>
-                <option value="60">60</option>
-                <option value="70">70</option>
-                <option value="80">80</option>
-                <option value="90">90</option>
-            </select>
-            <br><br>
-            <button type="submit">Geschenkideen anzeigen</button>
-        </form>
-    </div>
-    <script src="script.js"></script>
+  <div class="container">
+    <h1>🎁 Geschenk-Finder</h1>
+    <p>Finde das perfekte Geschenk basierend auf Geschlecht und Alter.</p>
+
+    <form id="giftForm">
+      <label for="gender">Geschlecht:</label>
+      <select id="gender" name="gender">
+        <option value="">Bitte wählen</option>
+        <option value="frauen">Frau</option>
+        <option value="manner">Mann</option>
+      </select>
+
+      <label for="age">Alter:</label>
+      <select id="age" name="age">
+        <option value="">Bitte wählen</option>
+        <option value="18">18</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+        <option value="70">70</option>
+        <option value="80">80</option>
+        <option value="90">90</option>
+      </select>
+
+      <button type="submit">Geschenkideen anzeigen</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("giftForm");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const gender = document.getElementById("gender").value;
+      const age = document.getElementById("age").value;
+
+      if (!age) {
+        alert("Bitte Alter auswählen.");
+        return;
+      }
+
+      let url = "";
+
+      // Alter优先：跳转到分类页
+      switch (age) {
+        case "18":
+          url = "geschenk-18-geburtstag";
+          break;
+        case "30":
+          url = "30-geburtstag";
+          break;
+        case "40":
+          url = "40-geburtstag-geschenke";
+          break;
+        case "50":
+          url = "50-geburtstagsgeschenk";
+          break;
+        case "60":
+          url = "60-geburtstag";
+          break;
+        case "70":
+          url = "geschenke-70-geburtstag";
+          break;
+        case "80":
+          url = "80-geburtstag";
+          break;
+        case "90":
+          url = "geschenke-zum-90-geburtstag";
+          break;
+        default:
+          url = "";
+      }
+
+      if (url) {
+        window.location.href = `https://www.makebuy.de/collections/${url}`;
+      } else {
+        alert("Keine passende Kategorie gefunden.");
+      }
+    });
+  </script>
 </body>
 </html>
+
